@@ -31,11 +31,11 @@ module.exports = appInfo => {
 
   config.sequelize = {
     dialect: 'mysql',
-    database: 'GREAT_FUN',
-    host: '116.62.156.102',
+    database: 'SAI_DB',
+    host: '47.100.112.88',
     port: '3306',
-    username: 'greatfun',
-    password: 'lixingyu666',
+    username: 'coco',
+    password: 'Wzt_759687679',
     timezone: '+08:00'
   };
 

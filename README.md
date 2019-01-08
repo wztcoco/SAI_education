@@ -1,4 +1,4 @@
-# greatFun
+# SAI_education
 
 multimedia contest project 
 
