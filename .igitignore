@@ -1,9 +1,7 @@
-node_modules
-coverage
-.idea
-npm-debug.log
 .DS_Store
-dist
-dbconfig1.js
-dump
-build
+ 
+node_modules/
+ 
+dist/
+ 
+npm-debug.log
