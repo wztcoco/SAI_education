@@ -28,7 +28,10 @@ module.exports = app => {
       allowNull: true
     }
   }, {
-    tableName: 'sai_student_course_bind'
+    tableName: 'sai_student_course_bind',
+    freezeTableName: true,
+        timestamps: false,
+        underscored: true
   });
 
   Model.associate = function() {

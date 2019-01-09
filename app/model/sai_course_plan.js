@@ -28,7 +28,10 @@ module.exports = app => {
       defaultValue: '0'
     }
   }, {
-    tableName: 'sai_course_plan'
+    tableName: 'sai_course_plan',
+    freezeTableName: true,
+        timestamps: false,
+        underscored: true
   });
 
   Model.associate = function() {

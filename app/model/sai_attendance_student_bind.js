@@ -28,7 +28,10 @@ module.exports = app => {
       defaultValue: '0'
     }
   }, {
-    tableName: 'sai_attendance_student_bind'
+    tableName: 'sai_attendance_student_bind',
+    freezeTableName: true,
+        timestamps: false,
+        underscored: true
   });
 
   Model.associate = function() {

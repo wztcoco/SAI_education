@@ -29,7 +29,10 @@ module.exports = app => {
       defaultValue: '1'
     }
   }, {
-    tableName: 'sai_admin'
+    tableName: 'sai_admin',
+    freezeTableName: true,
+        timestamps: false,
+        underscored: true
   });
 
   Model.associate = function() {

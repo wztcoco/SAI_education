@@ -28,7 +28,11 @@ module.exports = app => {
       allowNull: true
     }
   }, {
-    tableName: 'sai_school'
+    
+    tableName: 'sai_school',
+    freezeTableName: true,
+        timestamps: false,
+        underscored: true
   });
 
   Model.associate = function() {

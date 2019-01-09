@@ -24,7 +24,10 @@ module.exports = app => {
       allowNull: true
     }
   }, {
-    tableName: 'sai_sensitive_word'
+    tableName: 'sai_sensitive_word',
+    freezeTableName: true,
+        timestamps: false,
+        underscored: true
   });
 
   Model.associate = function() {

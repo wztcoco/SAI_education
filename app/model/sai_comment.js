@@ -32,7 +32,10 @@ module.exports = app => {
       allowNull: true
     }
   }, {
-    tableName: 'sai_comment'
+    tableName: 'sai_comment',
+    freezeTableName: true,
+        timestamps: false,
+        underscored: true
   });
 
   Model.associate = function() {
