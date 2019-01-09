@@ -3,47 +3,45 @@
 module.exports = app => {
   const DataTypes = app.Sequelize;
 
-  const Model = app.model.define('fun_user', {
-    user_id: {
+  const Model = app.model.define('sai_specialty', {
+    specialty_id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
-    user_password: {
+    specialty_name: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    user_name: {
+    delete_status: {
+      type: DataTypes.INTEGER(1),
+      allowNull: true,
+      defaultValue: '0'
+    },
+    specialty_intro: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    real_name: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    id_card: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    age: {
+    school_id: {
       type: DataTypes.INTEGER(11),
       allowNull: true
     },
-    sex: {
-      type: DataTypes.INTEGER(255),
+    specialty_code: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    specialty_principal: {
+      type: DataTypes.INTEGER(11),
       allowNull: true
     }
   }, {
-    tableName: 'fun_user',
-    freezeTableName: true,
-    timestamps: false,
-    underscored: true
+    tableName: 'sai_specialty'
   });
 
   Model.associate = function() {
 
-  };
-
+  }
 
   return Model;
 };
