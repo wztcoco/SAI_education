@@ -27,6 +27,10 @@ module.exports = app => {
       type: DataTypes.INTEGER(1),
       allowNull: true,
       defaultValue: '1'
+    },
+    admin_school: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true,
     }
   }, {
     tableName: 'sai_admin',

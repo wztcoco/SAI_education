@@ -11,6 +11,9 @@ module.exports = app => {
 
   //前台api
   require('./router/front/api/index')(app);
-
+  //后台路由
+  require('./router/back/web/account')(app);
+  //后台api
+  require('./router/back/api/index')(app);
 
 };
