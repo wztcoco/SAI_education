@@ -1,0 +1,129 @@
+<style>
+    label, span {
+        font-size: 14px;
+    }
+
+    .el-card__header span {
+        color: #fff;
+    }
+
+    .el-card__header .el-checkbox__inner {
+        border-radius: 50%;
+        border: 1px solid #fff;
+    }
+
+    .el-card__header .el-checkbox__input.is-checked + .el-checkbox__label {
+        color: #fff;
+    }
+    .sai-form-item span{
+        color: #ffffff;
+    }
+    .saic-card-bottom span {
+        color: #EFFFF2;
+        font-size: 12px;
+    }
+
+    .saic-card-bottom .saic-title-item-right {
+        color: #00CDA4 !important;
+    }
+
+    /*弹窗里表单间距减小*/
+    .el-dialog__body .el-form-item {
+        margin-bottom: 12px;
+    }
+</style>
+<div id="container">
+
+
+    <el-row>
+        <el-col :span="12">
+            <el-breadcrumb separator="/">
+                <el-breadcrumb-item>专业管理</el-breadcrumb-item>
+                <el-breadcrumb-item><span v-if="infoStatus==='add'">新增专业</span><span v-else>编辑专业</span>
+                </el-breadcrumb-item>
+            </el-breadcrumb>
+        </el-col>
+        <el-col :span="12" style="text-align: right">
+            <label class="sai-common-back" @click="back()" name="back"><i class="el-icon-back"></i>&nbsp;返回</label>
+        </el-col>
+    </el-row>
+
+    <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="130px" inline size="mini"
+             label-position="left">
+
+        <div class="sai-shadow">
+            <div class="sai-title-item">
+                <span class="sai-title-item-left">专业信息</span>
+            </div>
+            <div class="sai-line-item"></div>
+            <div class="sai-form-item">
+                <!--基本信息第一列-->
+                <el-row :gutter="20">
+                    <el-col :lg="10">
+                        <el-form-item label="专业代码：" required prop="specialty_code">
+                            <el-input v-model="ruleForm.specialty_code" placeholder="请输入专业代码"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :lg="10">
+                        <el-form-item label="专业名字：" required prop="specialty_name">
+                            <el-input v-model="ruleForm.specialty_name" placeholder="请输入专业名字"></el-input>
+                        </el-form-item>
+                    </el-col>
+
+                </el-row>
+                <el-row :gutter="20">
+                    <el-col :lg="10">
+                        <el-form-item label="专业负责人：">
+                            <el-input v-model="ruleForm.real_name" placeholder="" :disabled="true"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :lg="10">
+                        <el-form-item label="班级数量：">
+                            <el-input v-model="ruleForm.class_count" placeholder="0" :disabled="true"></el-input>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="20">
+                    <el-col :lg="10">
+                        <el-form-item label="教师人数：">
+                            <el-input v-model="ruleForm.teacher_count" placeholder="0" :disabled="true"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :lg="10">
+                        <el-form-item label="学生人数：">
+                            <el-input v-model="ruleForm.student_count" placeholder="0" :disabled="true"></el-input>
+                        </el-form-item>
+                    </el-col>
+
+                </el-row>
+                <el-row :gutter="20">
+                    <el-col :lg="20">
+                        <el-form-item label="专业介绍：" required prop="specialty_intro" >
+                            <el-input v-model="ruleForm.specialty_intro" type="textarea" :autosize="{ minRows: 2, maxRows: 4}" placeholder="请输入介绍内容"></el-input>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+            </div>
+            <div class="sai-form-item">
+
+                <div id="editor" ref="newEditor">
+                    <div v-html="ruleForm.details">${ruleForm.details}</div>
+                </div>
+                <el-row :gutter="20" class="dt-margin-top-20" type="flex" justify="center">
+
+                    <el-button size="mini" type="primary" disabled v-if="ruleForm.details===''">完成</el-button>
+                    <el-button size="mini" type="primary"  v-else @click="submitInfo('ruleForm')">完成</el-button>
+                </el-row>
+            </div>
+        </div>
+    </el-form>
+
+
+</div>
+<script>
+    var keywords = '<%=keywords%>';
+    var page_size = '<%=page_size%>';
+    var page_index = '<%=page_index%>';
+</script>
+<script src="/public/project/back/js/specialty/detail.js"></script>
+

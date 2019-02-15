@@ -23,19 +23,23 @@ module.exports = app => {
       type: DataTypes.DATE,
       allowNull: true
     },
-    community_id: {
+    speech_type_id: {
       type: DataTypes.INTEGER(11),
       allowNull: true
     },
     speech_content: {
       type: DataTypes.STRING(255),
       allowNull: true
+    },
+    speech_place: {
+      type: DataTypes.INTEGER(1),
+      allowNull: true
     }
   }, {
     tableName: 'sai_speech',
     freezeTableName: true,
-        timestamps: false,
-        underscored: true
+    timestamps: false,
+    underscored: true
   });
 
   Model.associate = function() {

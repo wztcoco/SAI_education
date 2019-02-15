@@ -39,12 +39,16 @@ module.exports = app => {
       type: DataTypes.INTEGER(1),
       allowNull: true,
       defaultValue: '0'
+    },
+    resource_url: {
+      type: DataTypes.STRING(255),
+      allowNull: true
     }
   }, {
     tableName: 'sai_course_resource',
     freezeTableName: true,
-        timestamps: false,
-        underscored: true
+    timestamps: false,
+    underscored: true
   });
 
   Model.associate = function() {

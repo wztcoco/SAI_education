@@ -14,11 +14,27 @@ class UserService extends Service {
                 send_json = ctx.helper.failed(-1, "无法登录，此用户已被禁用");
             }
             else {
+                let school_id="";
+                let school_name="";
+                //获取管理员所在学校id跟名称
+                const school = await this.ctx.model.SaiAdminSchoolBind.findOne({
+                    where: { admin_id: user.admin_id}
+                });
+                if(school){
+                    school_id=school.school_id;
+                    const school_info = await this.ctx.model.SaiSchool.findOne({
+                        where: { school_id: school_id}
+                    });
+                    if(school_info){
+                        school_name=school_info.school_name;
+                    }
+                }
                 const userInfo = {
                     "admin_id":user.admin_id,
                     "admin_name":user.admin_name,
                     "admin_rank":user.admin_rank,
-                    "school_id":user.admin_school
+                    "school_id":school_id,
+                    "school_name":school_name
                 };
                 send_json = ctx.helper.success("登录成功", userInfo);
             }

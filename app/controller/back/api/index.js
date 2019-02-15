@@ -18,8 +18,10 @@ class IndexController extends Controller {
              if(result!==null){
                  this.ctx.session.adminName=result.obj.admin_name;//管理员用户名
                  this.ctx.session.adminRank=result.obj.admin_rank;//管理员角色等级
+                 this.ctx.session.schoolName=result.obj.school_name;//管理员角色等级
                  this.ctx.session.adminId=result.obj.admin_id;//管理员id
                  this.ctx.session.schoolId=result.obj.school_id;//管理员学校id
+                 console.log(result.obj.school_name+"1")
              }
         }
         else {

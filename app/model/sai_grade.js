@@ -18,7 +18,7 @@ module.exports = app => {
       type: DataTypes.INTEGER(1),
       allowNull: true
     },
-    user_id: {
+    student_id: {
       type: DataTypes.INTEGER(11),
       allowNull: true
     },
@@ -38,8 +38,8 @@ module.exports = app => {
   }, {
     tableName: 'sai_grade',
     freezeTableName: true,
-        timestamps: false,
-        underscored: true
+    timestamps: false,
+    underscored: true
   });
 
   Model.associate = function() {

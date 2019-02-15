@@ -38,8 +38,8 @@ module.exports = app => {
   }, {
     tableName: 'sai_specialty',
     freezeTableName: true,
-        timestamps: false,
-        underscored: true
+    timestamps: false,
+    underscored: true
   });
 
   Model.associate = function() {

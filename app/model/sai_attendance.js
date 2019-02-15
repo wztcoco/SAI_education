@@ -14,24 +14,28 @@ module.exports = app => {
       type: DataTypes.INTEGER(11),
       allowNull: true
     },
-    start_time: {
+    attendance_time: {
       type: DataTypes.DATE,
       allowNull: true
     },
-    end_time: {
-      type: DataTypes.DATE,
+    attendance_longitude: {
+      type: DataTypes.DECIMAL,
       allowNull: true
     },
     delete_status: {
       type: DataTypes.INTEGER(1),
       allowNull: true,
       defaultValue: '0'
+    },
+    attendance_latitude: {
+      type: DataTypes.DECIMAL,
+      allowNull: true
     }
   }, {
     tableName: 'sai_attendance',
     freezeTableName: true,
-        timestamps: false,
-        underscored: true
+    timestamps: false,
+    underscored: true
   });
 
   Model.associate = function() {

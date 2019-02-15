@@ -30,12 +30,16 @@ module.exports = app => {
     comment_content: {
       type: DataTypes.STRING(255),
       allowNull: true
+    },
+    user_id_replay: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true
     }
   }, {
     tableName: 'sai_comment',
     freezeTableName: true,
-        timestamps: false,
-        underscored: true
+    timestamps: false,
+    underscored: true
   });
 
   Model.associate = function() {

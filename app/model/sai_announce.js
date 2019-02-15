@@ -10,12 +10,8 @@ module.exports = app => {
       primaryKey: true,
       autoIncrement: true
     },
-    announce_type: {
+    announce_type_id: {
       type: DataTypes.INTEGER(1),
-      allowNull: true
-    },
-    announce_type_name: {
-      type: DataTypes.STRING(255),
       allowNull: true
     },
     delete_status: {
@@ -30,12 +26,24 @@ module.exports = app => {
     user_id: {
       type: DataTypes.INTEGER(11),
       allowNull: true
+    },
+    announce_to: {
+      type: DataTypes.INTEGER(1),
+      allowNull: true
+    },
+    announce_content: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    announce_title: {
+      type: DataTypes.STRING(255),
+      allowNull: true
     }
   }, {
     tableName: 'sai_announce',
     freezeTableName: true,
-        timestamps: false,
-        underscored: true
+    timestamps: false,
+    underscored: true
   });
 
   Model.associate = function() {

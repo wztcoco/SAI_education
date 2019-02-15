@@ -27,8 +27,12 @@ module.exports = app => {
       type: DataTypes.INTEGER(11),
       allowNull: true
     },
-    course_time: {
-      type: DataTypes.STRING(255),
+    course_start_section: {
+      type: DataTypes.INTEGER(2),
+      allowNull: true
+    },
+    course_end_section: {
+      type: DataTypes.STRING(2),
       allowNull: true
     },
     classroom_id: {
@@ -38,12 +42,60 @@ module.exports = app => {
     course_book: {
       type: DataTypes.STRING(255),
       allowNull: true
+    },
+    course_class_id: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true
+    },
+    course_start_week: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true
+    },
+    course_end_week: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true
+    },
+    course_learn_year: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true
+    },
+    course_time_day: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true
+    },
+    course_semester: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true
+    },
+    evalution_start_time: {
+      type: DataTypes.DATE,
+      allowNull: true
+    },
+    evalution_end_time: {
+      type: DataTypes.DATE,
+      allowNull: true
+    },
+    course_start_time: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    course_end_time: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    course_credit: {
+      type: "DOUBLE(3,1)",
+      allowNull: true
+    },
+    specialty_id: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true
     }
   }, {
     tableName: 'sai_course',
     freezeTableName: true,
-        timestamps: false,
-        underscored: true
+    timestamps: false,
+    underscored: true
   });
 
   Model.associate = function() {

@@ -11,9 +11,14 @@ module.exports = app => {
 
   //前台api
   require('./router/front/api/index')(app);
+
   //后台路由
   require('./router/back/web/account')(app);
+  require('./router/back/web/home')(app);
+  require('./router/back/web/specialty')(app);
+  require('./router/back/web/classs')(app);
+  require('./router/back/web/student')(app);
   //后台api
   require('./router/back/api/index')(app);
-
+  require('./router/back/api/saicolumn')(app);
 };

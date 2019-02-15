@@ -1,0 +1,235 @@
+<style>
+    .el-table__row .el-button+.el-button {
+        margin-left: 5px;
+    }
+    .saic-menu{
+        width: 210px;
+        float: left;
+        overflow-y: auto;
+        overflow-x: hidden;
+        background-color: #F8FBFC;
+    }
+    .el-menu{
+        border-right:none;
+    }
+    .saic-content{
+        margin-left: 180px;
+        padding: 5px 15px 15px 15px;
+        overflow: auto;
+    }
+    .el-menu-item:hover{
+        background-color:#21AB8F ;
+    }
+    /*消除菜单横向滚动条*/
+    .saic-menu .el-scrollbar__wrap {
+        overflow-x: hidden;
+    }
+    .el-submenu .el-menu-item{
+        min-width: 180px!important;
+    }
+
+    .el-submenu .el-menu-item
+    {
+        height: 30px;
+        line-height: 30px;
+        font-size: 13px;
+    }
+    .el-menu-item, .el-submenu__title
+    {
+        height: 40px;
+        line-height: 40px;
+    }
+    .el-menu-item{
+        border-left: 4px solid #fff;
+    }
+    .el-menu-item:hover
+    {
+        border-left: 4px solid #cccccc;
+        background-color:#72C4b4 !important;
+        color: #ffffff !important;
+    }
+    .el-menu-item:hover i
+    {
+        color: #ffffff !important;
+    }
+    .el-menu-item.is-active
+    {
+        border-left: 4px solid #B2e0D7;
+        background-color: #72C4b4 !important;
+        color: #ffffff !important;
+    }
+    /*.el-submenu__title, .el-submenu__title i,.el-menu-item,    .el-menu-item i{*/
+    /*transition: all 0.2s;*/
+    /*}*/
+    .el-submenu__title:hover
+    {
+        background-color:#72C4b4 !important;
+        color: #ffffff !important;
+    }
+    .el-submenu__title:hover i{
+        color: #ffffff !important;
+    }
+
+
+
+
+    .saic-menu
+    {
+        overflow-x: hidden;
+    }
+    .parent-menu-title
+    {
+        cursor:pointer;
+        color:#21AB8F;
+        font-weight: bold;
+        font-size: 15px;
+        height:40px;
+        line-height: 40px;
+        text-indent: 45px;
+    }
+    .children-menu-item
+    {
+        height:30px;
+        line-height: 30px;
+        color: #666;
+        text-indent: 70px;
+        font-size: 14px;
+        background-size: 14px;
+        background-repeat: no-repeat;
+        background-position-x: 45px;
+        background-position-y: center;
+        border-left: 3px solid #f8f8fc;
+        cursor: pointer;
+    }
+    .children-menu-item-active
+    {
+        color:#ffffff;
+        background-color: #66B9A9;
+
+        border-left: 3px solid #B2e0D7;
+    }
+</style>
+<%- include('./partial/header.html',{userName:admin_name,userSchool:admin_school_name});%>
+<div>
+    <div class="saic-menu"  id="container-menu" v-cloak>
+        <el-scrollbar style="height: 100%">
+            <div class="parent-menu" v-for="item in tableData">
+                <div class="parent-menu-title" >${item.menu_name}</div>
+                <div class="children-menu"
+                     v-for="child in item.menu_list"
+                     @click="chooseMenu(child.column_id,child.column_url,child.column_rank)"
+                     :data-url="child.column_url"
+                >
+                    <div class="children-menu-item children-menu-item-active"
+                         v-if="currentMenuId===child.column_id"
+
+                    >${child.column_name}</div>
+                    <div class="children-menu-item"
+                         v-else
+
+                    >${child.column_name}</div>
+                </div>
+            </div>
+        </el-scrollbar>
+
+    </div>
+
+    <div class="saic-content" id="container-box"></div>
+</div>
+
+
+<%- include('./partial/footer.html');%>
+<script>
+    $(document).on("click",".parent-menu-title",function(){
+        if($(this).next().css("display")==='none'){
+            $(".children-menu").slideUp();
+            $(this).nextAll().slideDown();
+        }else{
+            $(this).nextAll().slideUp();
+        }
+    });
+
+
+
+    var admin_id='<%- admin_id%>';
+    var admin_name='<%- admin_name%>';
+    var admin_school_id='<%- admin_school_id%>';
+    var admin_school_name='<%- admin_school_name%>';
+    //设置菜单高度
+    console.log(admin_school_name+"=");
+    //获取菜单数据
+    var getDataFromServer=function(vmObj){
+        sai.post('/common/api/menu/getColumnList',{},function (res) {
+            vmObj.tableData=res.data.obj;
+            vmObj.dataComplete=true;
+        })
+    };
+    var vm = new Vue({
+        el: '#container-menu',
+        delimiters: ['${', '}'],
+        data: {
+            currentMenuId:'',
+            tableData:[],
+            dataComplete:false
+        },
+        created:function () {
+            $(".saic-menu").css("height",($(window).height()-80)+"px");//减去头和尾各50\30
+            $(".saic-content").css("height",($(window).height()-110)+"px");//减去头和尾各50+padding 15+15
+            getDataFromServer(this);
+        },
+        mounted(){
+            const that=this;
+            const timer = setInterval(function () {
+                if (that.dataComplete)
+                {
+                    $(".children-menu").css("display","none");
+                    $(".parent-menu").eq(0).children().nextAll().css("display","block");
+                    $(".children-menu").eq(0).click();
+                    window.clearInterval(timer);
+                }
+            },100)
+            // loadPartList("/back/page/dashboard",$("#container-box"));
+        },
+        methods:{
+            chooseMenu(subMenuId,menu_url,permission_level){
+                sessionStorage.clear();
+                if(menu_url===""||menu_url==="#")
+                {
+                    this.$message.warning("功能建设中");
+                }
+                else
+                {
+                    this.currentMenuId=subMenuId;
+                    if (menu_url.indexOf("?") !== -1){
+                        var temp=menu_url+'&permission_level='+permission_level;
+                        loadPartList(temp,$("#container-box"));
+                    }
+                    else {
+                        loadPartList(menu_url+'?permission_level='+permission_level,$("#container-box"));
+                    }
+                }
+            },
+            handleOpen(key, keyPath) {
+                console.log(key, keyPath);
+            },
+            handleClose(key, keyPath) {
+                console.log(key, keyPath);
+            },
+            linkToUrl:function (menu_url,permission_level) {
+                console.log(menu_url);
+                if (menu_url.indexOf("?") !== -1){
+                    var temp=menu_url+'&permission_level='+permission_level;
+                    loadPartList(temp,$("#container-box"));
+                }
+                else {
+                    loadPartList(menu_url+'?permission_level='+permission_level,$("#container-box"));
+                }
+
+            }
+        }
+    });
+
+    var backLoginOut=function () {
+        window.location.replace("/back/page/login");
+    };
+</script>

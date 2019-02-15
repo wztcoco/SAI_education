@@ -26,12 +26,16 @@ module.exports = app => {
     exam_time: {
       type: DataTypes.STRING(255),
       allowNull: true
+    },
+    seat_number: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true
     }
   }, {
     tableName: 'sai_exam',
     freezeTableName: true,
-        timestamps: false,
-        underscored: true
+    timestamps: false,
+    underscored: true
   });
 
   Model.associate = function() {

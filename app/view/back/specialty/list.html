@@ -1,0 +1,88 @@
+<div class = "sai-container">
+    <el-breadcrumb separator-class="el-icon-arrow-right">
+        <el-breadcrumb-item>专业管理</el-breadcrumb-item>
+        <el-breadcrumb-item>专业列表</el-breadcrumb-item>
+    </el-breadcrumb>
+
+
+    <div class="sai-filter-box">
+        <div class="sai-filter-left">
+            <el-form :inline="true" size="mini">
+                <el-form-item>
+                    <el-button @click="addInfo()" type="primary" icon="el-icon-plus">添加</el-button>
+                </el-form-item>
+                <el-form-item>
+                    <el-button @click="deleteStatus()" :disabled="this.sels.length === 0" type="danger" icon="el-icon-delete">批量删除</el-button>
+                </el-form-item>
+            </el-form>
+        </div>
+        <div class="sai-filter-right">
+            <el-form :inline="true" size="mini">
+                <el-form-item>
+                    <el-input size="mini" v-model="keywords" placeholder="请输入专业名称" style="width: 200px;"></el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-button class="saic-search" @click="search()" type="primary" icon="el-icon-search">搜索</el-button>
+                </el-form-item>
+            </el-form>
+        </div>
+    </div>
+    <el-table
+            ref="multipleTable"
+            :data="tableData"
+            size="mini"
+            :fit="true"
+            @selection-change="selsChange">
+
+        <el-table-column
+                width="60px"
+                prop="specialty_id"
+                label="全选"
+                type="selection">
+        </el-table-column>
+        <el-table-column
+                prop="specialty_code"
+                label="专业代码">
+        </el-table-column>
+        <el-table-column
+                prop="specialty_name"
+                label="专业名称">
+        </el-table-column>
+        <el-table-column
+                prop="class_count"
+                label="班级数量">
+        </el-table-column>
+        <el-table-column
+                prop="teacher_count"
+                label="教师人数">
+        </el-table-column>
+        <el-table-column
+                prop="student_count"
+                label="学生人数">
+        </el-table-column>
+        <el-table-column
+                prop="real_name"
+                label="专业负责人">
+        </el-table-column>
+        <el-table-column
+                type="flex"
+                prop="option"
+                label="操作"
+                width="230px">
+            <template slot-scope="scope">
+                <el-button type="warning" size="mini" @click="editInfo(scope.row.specialty_id)">编辑</el-button>
+                <el-button type="info" size="mini" @click="deleteInfo(scope.row.specialty_id)">删除</el-button>
+            </template>
+        </el-table-column>
+    </el-table>
+    <div v-if="total>0" class="sai-filter-box">
+        <el-pagination style="text-align: right"  @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pageIndex" :page-sizes="pageSizesArr" :page-size="pageSize" layout="total, sizes, prev, pager, next, jumper" :total="total">
+        </el-pagination>
+    </div>
+</div>
+<script>
+    var keywords = '<%=keywords%>' ? '<%=keywords%>' : "";
+    var page_size = '<%=page_size%>' ? '<%=page_size%>' : PAGE_SIZE_GLOBAL;
+    var page_index = '<%=page_index%>' ? '<%=page_index%>' : 1;
+</script>
+<script src="/public/project/back/js/specialty/list.js"></script>

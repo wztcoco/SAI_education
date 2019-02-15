@@ -12,37 +12,16 @@ module.exports = app => {
     },
     nick_name: {
       type: DataTypes.STRING(255),
-      allowNull: false
+      allowNull: true
     },
     open_id: {
       type: DataTypes.STRING(255),
-      allowNull: false
+      allowNull: true
     },
     user_type: {
       type: DataTypes.INTEGER(1),
       allowNull: true,
       defaultValue: '0'
-    },
-    real_name: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    sex: {
-      type: DataTypes.INTEGER(1),
-      allowNull: true,
-      defaultValue: '0'
-    },
-    telephone: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    user_number: {
-      type: DataTypes.INTEGER(11),
-      allowNull: true
-    },
-    class_id: {
-      type: DataTypes.INTEGER(11),
-      allowNull: true
     },
     delete_status: {
       type: DataTypes.INTEGER(1),
@@ -53,28 +32,15 @@ module.exports = app => {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    user_intro: {
+    user_location: {
       type: DataTypes.STRING(255),
       allowNull: true
-    },
-    user_birthday: {
-      type: DataTypes.DATE,
-      allowNull: true
-    },
-    user_status: {
-      type: DataTypes.INTEGER(1),
-      allowNull: true
-    },
-    online_time: {
-      type: DataTypes.INTEGER(11),
-      allowNull: true,
-      defaultValue: '0'
     }
   }, {
     tableName: 'sai_user',
     freezeTableName: true,
-        timestamps: false,
-        underscored: true
+    timestamps: false,
+    underscored: true
   });
 
   Model.associate = function() {
