@@ -90,6 +90,18 @@ module.exports = app => {
     specialty_id: {
       type: DataTypes.INTEGER(11),
       allowNull: true
+    },
+    course_learn_grade: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true
+    },
+    course_status: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true
+    },
+    add_time: {
+      type: DataTypes.DATE,
+      allowNull: true
     }
   }, {
     tableName: 'sai_course',

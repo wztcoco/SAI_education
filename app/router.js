@@ -18,6 +18,7 @@ module.exports = app => {
   require('./router/back/web/specialty')(app);
   require('./router/back/web/classs')(app);
   require('./router/back/web/student')(app);
+  require('./router/back/web/teacher')(app);
   //后台api
   require('./router/back/api/index')(app);
   require('./router/back/api/saicolumn')(app);

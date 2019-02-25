@@ -44,7 +44,7 @@ module.exports = app => {
       allowNull: true
     },
     student_birthday: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING(255),
       allowNull: true
     },
     id_card_number: {

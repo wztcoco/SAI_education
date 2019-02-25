@@ -18,11 +18,6 @@ module.exports = app => {
       type: DataTypes.INTEGER(11),
       allowNull: true
     },
-    read_status: {
-      type: DataTypes.INTEGER(1),
-      allowNull: true,
-      defaultValue: '0'
-    },
     delete_status: {
       type: DataTypes.INTEGER(1),
       allowNull: true,

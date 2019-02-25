@@ -43,6 +43,10 @@ module.exports = app => {
     resource_url: {
       type: DataTypes.STRING(255),
       allowNull: true
+    },
+    section_id: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true
     }
   }, {
     tableName: 'sai_course_resource',

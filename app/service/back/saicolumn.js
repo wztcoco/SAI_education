@@ -8,7 +8,7 @@ class UserService extends Service {
         let send_json = {};
         const columnGroup = await this.ctx.model.SaiColumn.findAll({
             where: {
-                column_rank:{$gte: admin_rank}//大于0的权限
+                column_rank:{$gte: admin_rank}//大于admin_rank的权限
             }
         });
         this.ctx.logger.info('some request data: %j', columnGroup);

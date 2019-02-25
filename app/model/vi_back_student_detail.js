@@ -34,6 +34,10 @@ module.exports = app => {
       type: DataTypes.INTEGER(11),
       allowNull: true
     },
+    id_card_number: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
     online_time: {
       type: DataTypes.INTEGER(11),
       allowNull: true,
@@ -48,7 +52,7 @@ module.exports = app => {
       allowNull: true
     },
     student_birthday: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING(255),
       allowNull: true
     },
     student_static: {

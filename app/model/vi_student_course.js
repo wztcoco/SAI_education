@@ -60,6 +60,14 @@ module.exports = app => {
       type: DataTypes.INTEGER(11),
       allowNull: true
     },
+    course_learn_grade: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true
+    },
+    course_status: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true
+    },
     course_time_day: {
       type: DataTypes.INTEGER(11),
       allowNull: true

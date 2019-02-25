@@ -30,6 +30,7 @@ class AttendanceService extends Service {
         const user_semester = await ctx.model.SaiSemester.findOne(sql_semester_option);
         const search_course_obj = {
             user_id: user_id,
+            course_status:1,
             course_semester: user_semester.semester,
             course_learn_year: user_detail.admission_time
         };
@@ -171,6 +172,7 @@ class AttendanceService extends Service {
         const user_semester = await ctx.model.SaiSemester.findOne(sql_semester_option);
         const search_course_obj = {
             user_id: user_id,
+            course_status:1,
             course_semester: user_semester.semester,
             course_learn_year: user_detail.admission_time
         };
@@ -251,6 +253,7 @@ class AttendanceService extends Service {
         const user_semester = await ctx.model.SaiSemester.findOne(sql_semester_option);
         const search_course_obj = {
             user_id: user_id,
+            course_status:1,
             course_semester: user_semester.semester,
             delete_status:0
         };
@@ -305,8 +308,8 @@ class AttendanceService extends Service {
         const {user_id} = params;
         let date = new Date();
         const search_school_obj = {
-            user_id: user_id
-        };
+                user_id: user_id
+            };
         const sql_school_option = {
             where: search_school_obj,
             attributes: ['school_id']
@@ -325,6 +328,7 @@ class AttendanceService extends Service {
         const user_semester = await ctx.model.SaiSemester.findOne(sql_semester_option);
         const search_course_obj = {
             user_id: user_id,
+            course_status:1,
             course_semester: user_semester.semester,
             delete_status:0
         };
@@ -363,7 +367,7 @@ class AttendanceService extends Service {
         const user_attend_id_list = Underscore.pluck(user_attend_list,"attendance_id");
         const course_list=[];
         Underscore.map(user_attendance_list,function (item1) {
-            const course_data = Underscore.where(user_attendance_list,{course_id:item1.course_id});
+            const course_data = Underscore.where(user_course_list,{course_id:item1.course_id});
             const attend_data = Underscore.where(user_attend_list,{attendance_id:item1.attendance_id});
             const user_data={
                 course_id:item1.course_id,

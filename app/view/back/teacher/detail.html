@@ -1,0 +1,156 @@
+<style>
+    label, span {
+        font-size: 14px;
+    }
+
+    .el-card__header span {
+        color: #fff;
+    }
+
+    .el-card__header .el-checkbox__inner {
+        border-radius: 50%;
+        border: 1px solid #fff;
+    }
+
+    .el-card__header .el-checkbox__input.is-checked + .el-checkbox__label {
+        color: #fff;
+    }
+    .sai-form-item span{
+        color: #ffffff;
+    }
+    .saic-card-bottom span {
+        color: #EFFFF2;
+        font-size: 12px;
+    }
+
+    .saic-card-bottom .saic-title-item-right {
+        color: #00CDA4 !important;
+    }
+
+    /*弹窗里表单间距减小*/
+    .el-dialog__body .el-form-item {
+        margin-bottom: 12px;
+    }
+</style>
+<div id="container">
+
+
+    <el-row>
+        <el-col :span="12">
+            <el-breadcrumb separator="/">
+                <el-breadcrumb-item>教师管理</el-breadcrumb-item>
+                <el-breadcrumb-item><span v-if="infoStatus==='add'">新增教师</span><span v-else>编辑教师</span>
+                </el-breadcrumb-item>
+            </el-breadcrumb>
+        </el-col>
+        <el-col :span="12" style="text-align: right">
+            <label class="sai-common-back" @click="back()" name="back"><i class="el-icon-back"></i>&nbsp;返回</label>
+        </el-col>
+    </el-row>
+
+    <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="130px" inline size="mini"
+             label-position="left">
+
+        <div class="sai-shadow">
+            <div class="sai-title-item">
+                <span class="sai-title-item-left">教师信息</span>
+            </div>
+            <div class="sai-line-item"></div>
+            <div class="sai-form-item">
+                <!--基本信息第一列-->
+                <el-row :gutter="20">
+                    <el-col :lg="10">
+                        <el-form-item label="教工号：" required prop="teacher_number">
+                            <el-input v-model="ruleForm.teacher_number" placeholder="请输入教工号"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :lg="10">
+                        <el-form-item label="教师姓名：" required prop="real_name">
+                            <el-input v-model="ruleForm.real_name" placeholder="请输入教师姓名"></el-input>
+                        </el-form-item>
+                    </el-col>
+
+                </el-row>
+                <el-row :gutter="20">
+                    <el-col :lg="10">
+                        <el-form-item label="性别：" required prop="select_sex">
+                            <el-select v-model="ruleForm.select_sex"  placeholder="请选择性别">
+                                <el-option
+                                        v-for="item in sex_list"
+                                        :key="item.value"
+                                        :label="item.label"
+                                        :value="item.value">
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :lg="10">
+                        <el-form-item label="出生日期：" required prop="teacher_birthday">
+                            <el-input v-model="ruleForm.teacher_birthday" placeholder="请输入出生日期"></el-input>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="20">
+                    <el-col :lg="10">
+                        <el-form-item label="身份证号码：" required prop="id_card_number">
+                            <el-input v-model="ruleForm.id_card_number" placeholder="请输入身份证"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :lg="10">
+                        <el-form-item label="手机号：" required prop="telephone">
+                            <el-input v-model="ruleForm.telephone" placeholder="请输入手机号"></el-input>
+                        </el-form-item>
+                    </el-col>
+
+                </el-row>
+                <el-row :gutter="20">
+                    <el-col :lg="10">
+                        <el-form-item label="专业：" required prop="specialty_id">
+                            <el-select v-model="ruleForm.specialty_id"  placeholder="请选择专业">
+                                <el-option
+                                        v-for="item in specialty_list"
+                                        :key="item.specialty_id"
+                                        :label="item.specialty_name"
+                                        :value="item.specialty_id">
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :lg="10">
+                        <el-form-item label="是否任教：" required prop="select_value">
+                            <el-select v-model="ruleForm.select_value"  placeholder="请选择任教状态">
+                                <el-option
+                                        v-for="item in teacher_static_list"
+                                        :key="item.value"
+                                        :label="item.label"
+                                        :value="item.value">
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+
+            </div>
+            <div class="sai-form-item">
+
+                <div id="editor" ref="newEditor">
+                    <div v-html="ruleForm.details">${ruleForm.details}</div>
+                </div>
+                <el-row :gutter="20" class="dt-margin-top-20" type="flex" justify="center">
+
+                    <el-button size="mini" type="primary" disabled v-if="ruleForm.details===''">完成</el-button>
+                    <el-button size="mini" type="primary"  v-else @click="submitInfo('ruleForm')">完成</el-button>
+                </el-row>
+            </div>
+        </div>
+    </el-form>
+
+
+</div>
+<script>
+    var keywords = '<%=keywords%>';
+    var page_size = '<%=page_size%>';
+    var page_index = '<%=page_index%>';
+</script>
+<script src="/public/project/back/js/teacher/detail.js"></script>
+

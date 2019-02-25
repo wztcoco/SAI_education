@@ -10,20 +10,12 @@ module.exports = app => {
       primaryKey: true,
       autoIncrement: true
     },
-    school_year: {
-      type: DataTypes.INTEGER(11),
-      allowNull: true
-    },
-    semester: {
-      type: DataTypes.INTEGER(1),
-      allowNull: true
-    },
     student_id: {
       type: DataTypes.INTEGER(11),
       allowNull: true
     },
     grade_value: {
-      type: DataTypes.INTEGER(11),
+      type: DataTypes.STRING(255),
       allowNull: true
     },
     course_id: {
@@ -34,6 +26,10 @@ module.exports = app => {
       type: DataTypes.INTEGER(1),
       allowNull: true,
       defaultValue: '0'
+    },
+    grade_point: {
+      type: DataTypes.DECIMAL,
+      allowNull: true
     }
   }, {
     tableName: 'sai_grade',

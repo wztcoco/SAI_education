@@ -3,48 +3,54 @@
 module.exports = app => {
   const DataTypes = app.Sequelize;
 
-  const Model = app.model.define('sai_announce', {
-    announce_id: {
+  const Model = app.model.define('vi_section_video', {
+    course_id: {
       type: DataTypes.INTEGER(11),
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true
-    },
-    announce_type_id: {
-      type: DataTypes.INTEGER(1),
       allowNull: true
     },
-    delete_status: {
+    section_id: {
       type: DataTypes.INTEGER(11),
-      allowNull: true,
+      allowNull: false,
       defaultValue: '0'
+    },
+    section_name: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    video_id: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true
+    },
+    section_order: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true
+    },
+    teacher_id: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true
+    },
+    video_name: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    video_intro: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    play_times: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true
+    },
+    video_url: {
+      type: DataTypes.STRING(255),
+      allowNull: true
     },
     add_time: {
       type: DataTypes.DATE,
       allowNull: true
-    },
-    admin_id: {
-      type: DataTypes.INTEGER(11),
-      allowNull: true
-    },
-    announce_to: {
-      type: DataTypes.INTEGER(1),
-      allowNull: true
-    },
-    announce_content: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    announce_title: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    school_id: {
-      type: DataTypes.INTEGER(11),
-      allowNull: true
     }
   }, {
-    tableName: 'sai_announce',
+    tableName: 'vi_section_video',
     freezeTableName: true,
     timestamps: false,
     underscored: true

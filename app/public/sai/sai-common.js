@@ -117,7 +117,53 @@ var enumFormat=function (enumType,enumValue) {
     }
     return result;
 };
-
+const VALUE_ENUM_MAPPING=[
+    {
+        type:1,
+        data:[
+            {
+                "key":0,
+                "value":"不在校"
+            },
+            {
+                "key":1,
+                "value":"在校"
+            }
+        ]
+    },{
+        type:2,
+        data:[
+            {
+                "key":0,
+                "value":"未知"
+            },
+            {
+                "key":1,
+                "value":"男"
+            },
+            {
+                "key":2,
+                "value":"女"
+            }
+        ]
+    },{
+        type:3,
+        data:[
+            {
+                "key":0,
+                "value":"否"
+            },
+            {
+                "key":1,
+                "value":"是"
+            }
+        ]
+    }];
+const VALUE_ENUM={
+    SCHOOL_STATIC:1,//是否在校，0不在校，1在校
+    SEX_STATUS:2,
+    TEACHER_STATIC:3,//是否任教，0否，1是
+};
 var enumFormatBack=function (enumType,enumValue) {
     var result="未知";
 

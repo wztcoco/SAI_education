@@ -45,7 +45,7 @@ module.exports = app => {
       allowNull: true
     },
     teacher_birthday: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING(255),
       allowNull: true
     },
     online_time: {

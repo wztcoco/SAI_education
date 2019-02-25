@@ -39,7 +39,7 @@ module.exports = app => {
       allowNull: true
     },
     teacher_birthday: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING(255),
       allowNull: true
     },
     id_card_number: {
@@ -62,8 +62,20 @@ module.exports = app => {
       type: DataTypes.STRING(255),
       allowNull: true
     },
+    avatar_url: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    nick_name: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
     school_id: {
       type: DataTypes.INTEGER(11),
+      allowNull: true
+    },
+    specialty_name: {
+      type: DataTypes.STRING(255),
       allowNull: true
     }
   }, {

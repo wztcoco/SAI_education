@@ -3,24 +3,27 @@
 module.exports = app => {
   const DataTypes = app.Sequelize;
 
-  const Model = app.model.define('sai_announce_type', {
-    announce_type_id: {
+  const Model = app.model.define('vi_student_live_time', {
+    student_id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true,
-      autoIncrement: true
+      defaultValue: '0'
     },
-    announce_type_name: {
-      type: DataTypes.STRING(255),
+    user_id: {
+      type: DataTypes.INTEGER(11),
       allowNull: true
     },
-    delete_status: {
-      type: DataTypes.INTEGER(1),
-      allowNull: true,
+    live_id: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true
+    },
+    learn_time: {
+      type: DataTypes.DECIMAL,
+      allowNull: false,
       defaultValue: '0'
     }
   }, {
-    tableName: 'sai_announce_type',
+    tableName: 'vi_student_live_time',
     freezeTableName: true,
     timestamps: false,
     underscored: true
