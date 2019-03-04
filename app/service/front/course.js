@@ -239,6 +239,21 @@ class CourseService extends Service {
         }
         return send_json;
     }
+    async GetHistoryCourseList(params){
+        const {ctx} = this;
+        let send_json = {};
+        const {user_id} = params;
+
+        const search_course_obj = {
+            course_id: course_id_result,
+        };
+        const sql_video_option = {
+            where: search_video_obj,
+            attributes:['course_id','play_times'],
+        };
+        const video_result = await ctx.model.ViSectionVideo.findAll(sql_video_option);
+
+    }
 }
 
 module.exports = CourseService;

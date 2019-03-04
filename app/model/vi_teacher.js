@@ -31,7 +31,7 @@ module.exports = app => {
       defaultValue: '0'
     },
     telephone: {
-      type: DataTypes.INTEGER(11),
+      type: DataTypes.STRING(20),
       allowNull: true
     },
     teacher_intro: {
@@ -72,9 +72,14 @@ module.exports = app => {
     },
     school_id: {
       type: DataTypes.INTEGER(11),
-      allowNull: true
+      allowNull: false,
+      defaultValue: '0'
     },
     specialty_name: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    school_name: {
       type: DataTypes.STRING(255),
       allowNull: true
     }

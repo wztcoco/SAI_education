@@ -16,6 +16,9 @@ class VideoService extends Service {
             attributes:['teacher_id','add_time','play_times','video_intro']
         };
         const video_result = await ctx.model.SaiCourseVideo.findOne(sql_video_option);
+        await ctx.model.SaiCourseVideo.update({
+            play_times: video_result.play_times+1
+        },{where:search_video_obj});
         const search_teacher_obj = {
             teacher_id: video_result.teacher_id
         };
@@ -72,8 +75,8 @@ class VideoService extends Service {
             specialty_name: teacher_result.specialty_name,
             nick_name: teacher_result.nick_name,
             avatar_url: teacher_result.avatar_url,
-            add_time: Moment(video_result.add_time).format('YYYY-MM-DD HH:mm:ss'),
-            play_times: video_result.play_times,
+            add_time: Moment(video_result.add_time).format('YYYY-MM-DD'),
+            play_times: video_result.play_times+1,
             video_intro: video_result.video_intro,
             star_status : 0,
             star_number : star_result.count,
@@ -179,6 +182,47 @@ class VideoService extends Service {
             return send_json;
         }
 
+    }
+    async postLeaveVideo(params) {
+        const {ctx} = this;
+        let send_json = {};
+        const {user_id, video_id,learn_time} = params;
+        const search_user_obj = {
+            user_id: user_id,
+            delete_status: 0
+        };
+        const sql_user_option = {
+            where: search_user_obj,
+            attributes:['student_id']
+        };
+        const user_result = await ctx.model.SaiUserStudent.findOne(sql_user_option);
+        const search_learn_obj = {
+            student_id: user_result.student_id,
+            video_id:video_id,
+            delete_status: 0
+        };
+        const sql_learn_option = {
+            where: search_learn_obj,
+            attributes:['learn_time']
+        };
+        const learn_result = await ctx.model.SaiVideoLearnTime.findOne(sql_learn_option);
+        if(learn_result)
+        {
+            await ctx.model.SaiVideoLearnTime.update({
+                learn_time:learn_result.learn_time+learn_time,
+                last_learn_time:new Date()
+            },{where:search_learn_obj});
+        } else {
+            await ctx.model.SaiVideoLearnTime.create({
+                learn_time:learn_time,
+                last_learn_time:new Date(),
+                video_id:video_id,
+                student_id: user_result.student_id
+            });
+        }
+
+        send_json = ctx.helper.success("成功", {});
+        return send_json;
     }
 }
 

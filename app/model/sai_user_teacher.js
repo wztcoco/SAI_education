@@ -32,7 +32,7 @@ module.exports = app => {
       defaultValue: '0'
     },
     telephone: {
-      type: DataTypes.INTEGER(11),
+      type: DataTypes.STRING(20),
       allowNull: true
     },
     delete_status: {

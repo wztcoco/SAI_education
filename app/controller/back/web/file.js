@@ -1,4 +1,6 @@
-
+/**
+ * Created by kaabb on 2018/6/24.
+ */
 'use strict';
 const Controller = require('egg').Controller;
 const sendToWormhole = require('stream-wormhole');

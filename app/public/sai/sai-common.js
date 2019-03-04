@@ -158,11 +158,28 @@ const VALUE_ENUM_MAPPING=[
                 "value":"是"
             }
         ]
+    },{
+        type:4,
+        data:[
+            {
+                "key":0,
+                "value":"普通教室"
+            },
+            {
+                "key":1,
+                "value":"实验室"
+            },
+            {
+                "key":2,
+                "value":"办公室"
+            }
+        ]
     }];
 const VALUE_ENUM={
     SCHOOL_STATIC:1,//是否在校，0不在校，1在校
     SEX_STATUS:2,
     TEACHER_STATIC:3,//是否任教，0否，1是
+    CLASSROOM_TYPE:4,//是否任教，0否，1是
 };
 var enumFormatBack=function (enumType,enumValue) {
     var result="未知";

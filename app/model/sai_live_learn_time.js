@@ -20,7 +20,8 @@ module.exports = app => {
     },
     learn_time: {
       type: DataTypes.INTEGER(11),
-      allowNull: true
+      allowNull: true,
+      defaultValue: '0'
     },
     last_learn_time: {
       type: DataTypes.DATE,

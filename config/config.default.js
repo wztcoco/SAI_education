@@ -64,6 +64,7 @@ module.exports = appInfo => {
         '.ejs': 'ejs',
     },
   };
+  config.appBaseDir= path.join(appInfo.baseDir, 'app');
 
   return config;
 };

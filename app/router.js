@@ -12,6 +12,7 @@ module.exports = app => {
   //前台api
   require('./router/front/api/index')(app);
 
+  require('./router/front/api/common')(app);
   //后台路由
   require('./router/back/web/account')(app);
   require('./router/back/web/home')(app);
@@ -19,6 +20,7 @@ module.exports = app => {
   require('./router/back/web/classs')(app);
   require('./router/back/web/student')(app);
   require('./router/back/web/teacher')(app);
+  require('./router/back/web/classroom')(app);
   //后台api
   require('./router/back/api/index')(app);
   require('./router/back/api/saicolumn')(app);
